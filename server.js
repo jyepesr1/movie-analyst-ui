@@ -60,6 +60,7 @@ app.get('/publications', function(req, res){
         res.send(403, '403 Forbidden');
       } else {
         var publications = data.body;
+        console.log(publications)
         res.render('publications', {publications : publications});
       }
     })
@@ -72,6 +73,32 @@ app.get('/pending', function(req, res){
     .end(function(err, data) {
       if(data.status == 403){
         res.send(403, '403 Forbidden');
+      }
+    })
+})
+
+app.get('/info_front', function(req, res){
+  request
+    .get('http://169.254.169.254/latest/meta-data/public-ipv4')
+    .end(function(err, data) {
+      if(data.status == 403){
+        res.send(403, '403 Forbidden');
+      } else {
+        var public_ip = data.text;
+        res.render('info_front', {public_ip : public_ip});
+      }
+    })
+})
+
+app.get('/info_back', function(req, res){
+  request
+    .get('http://'+backendHost+':3000/info')
+    .end(function(err, data) {
+      if(data.status == 403){
+        res.send(403, '403 Forbidden');
+      } else {
+        var private_ip = data.text;
+        res.render('info_back', {private_ip : private_ip});
       }
     })
 })
