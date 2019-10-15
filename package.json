@@ -8,7 +8,14 @@
     "superagent": "^5.1.0"
   },
   "scripts": {
-    "start": "pm2 start server.js",
+    "start": "pm2-runtime server.js",
     "dev": "nodemon server.js"
-  }
+  },
+  "name": "movie-analyst-ui",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "git@github.com:jyepesr1/movie-analyst-ui.git",
+  "author": "Johan Sebastian Yepes Rios <johanyepes@hotmail.com>",
+  "license": "MIT",
+  "private": false
 }
