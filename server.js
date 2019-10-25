@@ -78,13 +78,13 @@ app.get('/pending', function(req, res){
 
 app.get('/info_front', function(req, res){
   request
-    .get('http://169.254.169.254/latest/meta-data/public-ipv4')
+    .get('http://169.254.169.254/latest/meta-data/local-ipv4')
     .end(function(err, data) {
       if(data.status == 403){
         res.send(403, '403 Forbidden');
       } else {
-        var public_ip = data.text;
-        res.render('info_front', {public_ip : public_ip});
+        var private_ip = data.text;
+        res.render('info_front', {private_ip : private_ip});
       }
     })
 })
